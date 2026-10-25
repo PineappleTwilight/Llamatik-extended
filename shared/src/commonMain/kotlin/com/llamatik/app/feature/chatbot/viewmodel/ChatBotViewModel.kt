@@ -1,8 +1,9 @@
 package com.llamatik.app.feature.chatbot.viewmodel
 
-import cafe.adriel.voyager.core.model.ScreenModel
-import cafe.adriel.voyager.core.model.screenModelScope
-import cafe.adriel.voyager.navigator.Navigator
+import com.llamatik.app.platform.ScreenModel
+import com.llamatik.app.platform.Screen
+import com.llamatik.app.platform.SimpleNavigator
+
 import co.touchlab.kermit.Logger
 import com.llamatik.app.feature.agent.ChatAgentCoordinator
 import com.llamatik.app.feature.agent.ToolCallParser
@@ -92,7 +93,7 @@ enum class GenerationMode { TEXT, IMAGE, IMAGE_TO_IMAGE, VISION }
 const val COSINE_THRESHOLD = 0.15
 
 class ChatBotViewModel(
-    private var navigator: Navigator,
+    private var navigator: SimpleNavigator,
     private val settings: Settings,
     private val getAllNewsUseCase: GetAllNewsUseCase,
     private val getModelsUseCase: GetModelsUseCase,
@@ -259,7 +260,7 @@ class ChatBotViewModel(
     }
 
     fun onStarted(
-        navigator: Navigator? = null,
+        navigator: SimpleNavigator? = null,
         embedFilePath: String? = null,
         generatorFilePath: String? = null
     ) {

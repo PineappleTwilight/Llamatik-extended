@@ -78,11 +78,6 @@ kotlin {
             implementation(libs.kamel)
             implementation(libs.kamel.default)
 
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.bottom.sheet.navigator)
-            implementation(libs.voyager.tab.navigator)
-            implementation(libs.voyager.transitions)
-            implementation(libs.voyager.koin)
 
             implementation(libs.multiplatform.settings.no.arg)
             implementation(libs.multiplatform.settings.serialization)

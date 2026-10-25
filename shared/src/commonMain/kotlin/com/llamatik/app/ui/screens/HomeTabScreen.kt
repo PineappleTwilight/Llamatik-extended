@@ -2,6 +2,10 @@
 
 package com.llamatik.app.ui.screens
 
+import com.llamatik.app.platform.LocalSimpleTabNavigator
+import com.llamatik.app.platform.Screen
+import com.llamatik.app.platform.koinScreenModel
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -41,11 +45,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.koinScreenModel
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import com.llamatik.app.localization.Localization
 import com.llamatik.app.localization.SetLanguage
 import com.llamatik.app.localization.getCurrentLanguage
@@ -68,8 +67,8 @@ class HomeTabScreen : Screen {
 
     @Composable
     override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
-        val tabNavigator = LocalTabNavigator.current
+        val navigator = LocalSimpleNavigator.current
+        val tabNavigator = LocalSimpleTabNavigator.current
         val localization = getCurrentLocalization()
         val viewModel = koinScreenModel<HomeScreenViewModel>(
             parameters = { ParametersHolder(listOf(navigator).toMutableList(), false) }

@@ -1,5 +1,7 @@
 package com.llamatik.app.feature.chatbot
 
+import com.llamatik.app.platform.Screen
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,9 +36,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import com.llamatik.app.localization.getCurrentLocalization
 import com.llamatik.app.resources.Res
 import com.llamatik.app.resources.a_pair_of_llamas_in_a_field_with_clouds_and_mounta
@@ -49,7 +48,7 @@ class ChatBotOnboardingScreen : Screen {
     @Composable
     override fun Content() {
         val localization = getCurrentLocalization()
-        val navigator = LocalNavigator.currentOrThrow
+        val navigator = LocalSimpleNavigator.current
 
         LlamatikTheme {
             val scrollState = rememberScrollState()

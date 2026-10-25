@@ -1,8 +1,8 @@
 package com.llamatik.app.ui.screens.viewmodel
 
-import cafe.adriel.voyager.core.model.ScreenModel
-import cafe.adriel.voyager.core.model.screenModelScope
-import cafe.adriel.voyager.navigator.Navigator
+import com.llamatik.app.platform.ScreenModel
+import com.llamatik.app.platform.SimpleNavigator
+
 import com.llamatik.app.platform.RootNavigatorRepository
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(
-    private var navigator: Navigator,
+    private var navigator: SimpleNavigator,
     private val rootNavigatorRepository: RootNavigatorRepository
 ) : ScreenModel {
     private val _state = MutableStateFlow(SettingsState("", "", ""))
@@ -20,7 +20,7 @@ class SettingsViewModel(
     private val _sideEffects = Channel<SettingsSideEffects>()
     val sideEffects: Flow<SettingsSideEffects> = _sideEffects.receiveAsFlow()
 
-    fun onStarted(navigator: Navigator) {
+    fun onStarted(navigator: SimpleNavigator) {
         this.navigator = navigator
         screenModelScope.launch {
             _state.value = SettingsState(

@@ -2,10 +2,9 @@
 
 package com.llamatik.app.ui.screens.viewmodel
 
-import cafe.adriel.voyager.core.model.ScreenModel
-import cafe.adriel.voyager.core.model.screenModelScope
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.llamatik.app.platform.ScreenModel
+import com.llamatik.app.platform.SimpleNavigator
+
 import co.touchlab.kermit.Logger
 import com.llamatik.app.feature.debugmenu.DebugMenuScreen
 import com.llamatik.app.feature.debugmenu.repositories.GlobalAppSettingsRepository
@@ -33,7 +32,7 @@ import kotlin.time.ExperimentalTime
 private const val ONBOARDING_VIEWED_KEY = "onboarding_viewed_key"
 
 class HomeScreenViewModel(
-    private var navigator: Navigator,
+    private var navigator: SimpleNavigator,
     private val getAllNewsUseCase: GetAllNewsUseCase,
     private val rootNavigatorRepository: RootNavigatorRepository,
     private val globalAppSettingsRepository: GlobalAppSettingsRepository,
@@ -50,7 +49,7 @@ class HomeScreenViewModel(
         )
     )
     val state: StateFlow<HomeScreenState> = _state.asStateFlow()
-    private lateinit var tabNavigator: TabNavigator
+    private lateinit var tabNavigator: com.llamatik.app.platform.SimpleTabNavigator
 
     init {
         if (!settings.getBoolean(ONBOARDING_VIEWED_KEY, false)) {
@@ -76,7 +75,7 @@ class HomeScreenViewModel(
         rootNavigatorRepository.navigator.push(NewsFeedScreen())
     }
 
-    fun onStarted(navigator: Navigator, tabNavigator: TabNavigator) {
+    fun onStarted(navigator: SimpleNavigator, tabNavigator: com.llamatik.app.platform.SimpleTabNavigator) {
         this.navigator = navigator
         this.tabNavigator = tabNavigator
 

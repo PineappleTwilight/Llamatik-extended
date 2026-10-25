@@ -1,8 +1,9 @@
 package com.llamatik.app.feature.news.viewmodel
 
-import cafe.adriel.voyager.core.model.ScreenModel
-import cafe.adriel.voyager.core.model.screenModelScope
-import cafe.adriel.voyager.navigator.Navigator
+import com.llamatik.app.platform.ScreenModel
+import com.llamatik.app.platform.Screen
+import com.llamatik.app.platform.SimpleNavigator
+
 import co.touchlab.kermit.Logger
 import com.llamatik.app.feature.news.NewsFeedDetailScreen
 import com.llamatik.app.feature.news.repositories.FeedItem
@@ -16,7 +17,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class NewsFeedViewModel(
-    private var navigator: Navigator,
+    private var navigator: SimpleNavigator,
     private val rootNavigatorRepository: RootNavigatorRepository,
     private val getAllNewsUseCase: GetAllNewsUseCase
 ) : ScreenModel {
@@ -25,7 +26,7 @@ class NewsFeedViewModel(
     private val _sideEffects = Channel<NewsSideEffects>()
     val sideEffects: Flow<NewsSideEffects> = _sideEffects.receiveAsFlow()
 
-    fun onStarted(navigator: Navigator) {
+    fun onStarted(navigator: SimpleNavigator) {
         this.navigator = navigator
         screenModelScope.launch {
             getAllNewsUseCase.invoke()

@@ -1,5 +1,8 @@
 package com.llamatik.app.feature.chatbot
 
+import com.llamatik.app.platform.Screen
+import com.llamatik.app.platform.LocalSimpleNavigator
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -53,11 +56,9 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.koinScreenModel
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import com.llamatik.app.feature.chatbot.ui.ChatHistoryBottomSheet
+import com.llamatik.app.platform.LocalSimpleTabNavigator
+import com.llamatik.app.platform.koinScreenModel
 import com.llamatik.app.feature.chatbot.ui.ChatInputBox
 import com.llamatik.app.feature.chatbot.viewmodel.ChatBotSideEffects
 import com.llamatik.app.feature.chatbot.viewmodel.ChatBotState
@@ -95,7 +96,7 @@ class ChatBotTabScreen : Screen {
     @Composable
     override fun Content() {
         val localization = getCurrentLocalization()
-        val navigator = LocalNavigator.currentOrThrow
+        val navigator = LocalSimpleNavigator.current
         val isLoading = remember { mutableStateOf(false) }
         val showSuggestions = remember { mutableStateOf(true) }
 
@@ -112,7 +113,7 @@ class ChatBotTabScreen : Screen {
             viewModel.onStarted(navigator)
         }
 
-        val tabNavigator = LocalTabNavigator.current
+        val tabNavigator = LocalSimpleTabNavigator.current
         LaunchedEffect(tabNavigator.current.key) {
             viewModel.refreshModelState()
         }
@@ -725,7 +726,7 @@ class ChatBotTabScreen : Screen {
         localization: Localization,
         onDownloadDefault: () -> Unit,
     ) {
-        val navigator = LocalNavigator.currentOrThrow
+        val navigator = LocalSimpleNavigator.current
         Column(
             modifier = Modifier
                 .fillMaxSize()

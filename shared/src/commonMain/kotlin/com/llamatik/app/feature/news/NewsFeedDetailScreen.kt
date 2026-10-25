@@ -1,5 +1,7 @@
 package com.llamatik.app.feature.news
 
+import com.llamatik.app.platform.Screen
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -26,10 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.koinScreenModel
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import com.llamatik.app.feature.news.viewmodel.FeedItemDetailScreenState
 import com.llamatik.app.feature.news.viewmodel.FeedItemDetailViewModel
 import com.llamatik.app.localization.Localization
@@ -50,7 +48,7 @@ import org.koin.core.parameter.ParametersHolder
 class NewsFeedDetailScreen(private val link: String) : Screen {
     @Composable
     override fun Content() {
-        val currentNavigator = LocalNavigator.currentOrThrow
+        val currentNavigator = LocalSimpleNavigator.current
         val localization = getCurrentLocalization()
 
         val viewModel = koinScreenModel<FeedItemDetailViewModel>(

@@ -1,5 +1,7 @@
 package com.llamatik.app.feature.webview
 
+import com.llamatik.app.platform.Screen
+
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,9 +21,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import com.llamatik.app.localization.Localization
 import com.llamatik.app.localization.getCurrentLocalization
 import com.llamatik.app.platform.WebViewLayout
@@ -39,7 +38,7 @@ class WebViewScreen(
         val localization = getCurrentLocalization()
 
         LlamatikTheme {
-            val currentNavigator = LocalNavigator.currentOrThrow
+            val currentNavigator = LocalSimpleNavigator.current
             /*val viewModel = koinScreenModel<WebViewModel>(
                 parameters = {
                     ParametersHolder(
