@@ -1,8 +1,9 @@
 package com.llamatik.app.feature.webview.viewmodel
 
-import cafe.adriel.voyager.core.model.ScreenModel
-import cafe.adriel.voyager.core.model.screenModelScope
-import cafe.adriel.voyager.navigator.Navigator
+import com.llamatik.app.platform.ScreenModel
+import com.llamatik.app.platform.Screen
+import com.llamatik.app.platform.SimpleNavigator
+
 import com.llamatik.app.platform.RootNavigatorRepository
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class WebViewModel(
     private val userManualUrl: String,
-    private val navigator: Navigator,
+    private val navigator: SimpleNavigator,
     private val rootNavigatorRepository: RootNavigatorRepository,
 ) : ScreenModel {
     private val _state = MutableStateFlow(WebViewScreenState(userManualUrl))

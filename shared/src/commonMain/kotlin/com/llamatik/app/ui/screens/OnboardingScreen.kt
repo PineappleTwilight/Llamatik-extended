@@ -1,14 +1,13 @@
 package com.llamatik.app.ui.screens
 
+import com.llamatik.app.platform.Screen
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import com.llamatik.app.localization.getCurrentLocalization
 import com.llamatik.app.resources.Res
 import com.llamatik.app.resources.flying_around_the_world_cuate
@@ -23,7 +22,7 @@ class OnboardingScreen : Screen {
     @Composable
     override fun Content() {
         val localization = getCurrentLocalization()
-        val navigator = LocalNavigator.currentOrThrow
+        val navigator = LocalSimpleNavigator.current
         LlamatikTheme {
             val onboardingPromoTitle1 =
                 buildAnnotatedString {

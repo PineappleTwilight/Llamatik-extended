@@ -1,6 +1,8 @@
 package com.llamatik.app.feature.debugmenu.viewmodel
 
-import cafe.adriel.voyager.core.model.ScreenModel
+import com.llamatik.app.platform.ScreenModel
+import com.llamatik.app.platform.Screen
+
 import com.llamatik.app.feature.debugmenu.repositories.GlobalAppSettingsRepository
 import com.llamatik.app.localization.AvailableLanguages
 import com.llamatik.app.platform.Environment

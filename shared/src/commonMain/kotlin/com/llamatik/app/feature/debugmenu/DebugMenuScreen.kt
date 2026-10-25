@@ -2,6 +2,8 @@
 
 package com.llamatik.app.feature.debugmenu
 
+import com.llamatik.app.platform.Screen
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -44,10 +46,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.koinScreenModel
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import com.llamatik.app.feature.debugmenu.viewmodel.DebugMenuSideEffects
 import com.llamatik.app.feature.debugmenu.viewmodel.DebugMenuViewModel
 import com.llamatik.app.localization.AvailableLanguages
@@ -70,7 +68,7 @@ class DebugMenuScreen : Screen {
     @Composable
     override fun Content() {
         LlamatikTheme {
-            val currentNavigator = LocalNavigator.currentOrThrow
+            val currentNavigator = LocalSimpleNavigator.current
             val snackbarHostState = remember { SnackbarHostState() }
             showingModal = remember { mutableStateOf(false) }
 

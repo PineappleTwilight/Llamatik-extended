@@ -135,12 +135,6 @@ kotlin {
             // Kamel for image loading
             implementation(libs.kamel)
 
-            // Voyager for Navigation
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.bottom.sheet.navigator)
-            implementation(libs.voyager.tab.navigator)
-            implementation(libs.voyager.transitions)
-            implementation(libs.voyager.koin)
 
             // Multiplatform Settings to encrypted key-value data
             implementation(libs.multiplatform.settings.no.arg)
@@ -302,12 +296,6 @@ compose.desktop {
 
         implementation(libs.kamel)
 
-        // Voyager for Navigation
-        implementation(libs.voyager.navigator)
-        implementation(libs.voyager.bottom.sheet.navigator)
-        implementation(libs.voyager.tab.navigator)
-        implementation(libs.voyager.transitions)
-        implementation(libs.voyager.koin)
 
         // Multiplatform Settings to encrypted key-value data
         implementation(libs.multiplatform.settings.no.arg)

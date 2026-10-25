@@ -1,5 +1,7 @@
 package com.llamatik.app.feature.news
 
+import com.llamatik.app.platform.Screen
+
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,10 +23,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.koin.koinScreenModel
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import com.llamatik.app.feature.news.viewmodel.NewsFeedViewModel
 import com.llamatik.app.feature.news.viewmodel.NewsScreenState
 import com.llamatik.app.localization.Localization
@@ -38,7 +36,7 @@ import org.koin.core.parameter.ParametersHolder
 class NewsFeedScreen : Screen {
     @Composable
     override fun Content() {
-        val currentNavigator = LocalNavigator.currentOrThrow
+        val currentNavigator = LocalSimpleNavigator.current
         val localization = getCurrentLocalization()
 
         val viewModel = koinScreenModel<NewsFeedViewModel>(

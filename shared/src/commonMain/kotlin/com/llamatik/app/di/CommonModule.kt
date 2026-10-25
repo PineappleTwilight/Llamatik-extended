@@ -1,8 +1,8 @@
 package com.llamatik.app.di
 
 import androidx.compose.material3.SnackbarHostState
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.llamatik.app.platform.SimpleNavigator
+import com.llamatik.app.platform.SimpleTabNavigator
 import com.llamatik.app.data.repositories.DownloadFileRepository
 import com.llamatik.app.feature.chatbot.repositories.ChatHistoryRepository
 import com.llamatik.app.feature.chatbot.repositories.ModelsRepository
@@ -30,13 +30,13 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val commonModule = module {
-    factory { (navigator: Navigator) ->
+    factory { (navigator: SimpleNavigator) ->
         HomeScreenViewModel(navigator, get(), get(), get(), get())
     }
     factory {
         NewsFeedViewModel(get(), get(), get())
     }
-    factory { (navigator: Navigator) ->
+    factory { (navigator: SimpleNavigator) ->
         SettingsViewModel(navigator, get())
     }
 
@@ -52,7 +52,7 @@ val commonModule = module {
         WebViewModel(url, get(), get())
     }
 
-    factory { (navigator: Navigator) ->
+    factory { (navigator: SimpleNavigator) ->
         ChatBotViewModel(
             navigator = navigator,
             settings = get(),
@@ -65,7 +65,7 @@ val commonModule = module {
         )
     }
 
-    single { (navigator: Navigator, tabNavigator: TabNavigator) ->
+    single { (navigator: SimpleNavigator, tabNavigator: SimpleTabNavigator) ->
         RootNavigatorRepository(navigator, tabNavigator)
     }
 
